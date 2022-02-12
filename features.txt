@@ -1,0 +1,7 @@
+- pinar notas ? 
+- Mostrar todas as notas (todas ordenada por data ?)
+- Mostrar agrupada pela label (etiqueta)
+- Adicionar uma nota
+- Remover nota 
+- Funcionalidade do CLI 
+

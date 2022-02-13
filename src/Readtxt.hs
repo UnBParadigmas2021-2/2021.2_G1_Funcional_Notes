@@ -17,5 +17,5 @@ readFileIfExist path = do
   
 readFileThatExist :: FilePath -> IO String
 readFileThatExist path = do
-  contents <- readFile path
+  contents <- readFile' path
   return contents

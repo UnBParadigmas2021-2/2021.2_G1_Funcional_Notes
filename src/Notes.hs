@@ -1,7 +1,7 @@
-module Notes (NoteData) where
+module Notes (NoteData(..)) where
 
 data NoteData = NoteData {
-    id :: Int,
+    noteId :: Int,
     title :: String,
     content :: String,
     createDateISO :: String,

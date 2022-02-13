@@ -9,4 +9,4 @@ main = do
     -- CLI arguments
     args <- getArgs
 
-    putStrLn "test"
+    create

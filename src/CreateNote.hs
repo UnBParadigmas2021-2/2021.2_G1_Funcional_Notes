@@ -1,15 +1,22 @@
-module Operations (create) where
+module CreateNote (createNote) where
 
 import Data.Time.Clock
 import Data.Time.Calendar
 import Data.List
 
+import System.FilePath.Posix
 import System.Directory
 
 import Notes
-import Utils
+import Utils (formatDate, decodeYesOrNoAnswer)
+import Write (write)
 
-create = do
+nextNoteId :: [Int] -> Int
+nextNoteId [] = 1
+nextNoteId noteFilesList = last (sort noteFilesList) + 1
+
+createNote :: IO()
+createNote = do
     putStrLn "\n-------- Criar Nova Nota --------"
     
     putStrLn "\n----> Título da Nota"
@@ -31,18 +38,21 @@ create = do
     now <- getCurrentTime
     let (year, month, day) = toGregorian $ utctDay now
 
+    createDirectoryIfMissing True $ takeDirectory "./Notes/"
     noteFilesList <- listDirectory "./Notes/"
     let noteFilesListInt = map (read :: FilePath -> Int) noteFilesList
+    let newNoteId = nextNoteId noteFilesListInt
 
     let note = NoteData {
-        noteId=last (sort noteFilesListInt) + 1, title=noteTitle, content=noteContent,
+        noteId=newNoteId, title=noteTitle, content=noteContent,
         createDateISO=formatDate day month year,
         lastUpdateDateISO=formatDate day month year,
         tag=noteTag, pinned=decodeYesOrNoAnswer isNotePinnedString
     }
 
-    -- TO-DO
-    -- Enviar nota para ser persistida
+    let filePath = "./Notes/" ++ show newNoteId 
+    let fileContent = show note
 
-    let noteShow = "\n" ++ show note
-    putStrLn noteShow
+    write filePath fileContent
+
+    putStrLn "\nNota Criada com Sucesso!\n"

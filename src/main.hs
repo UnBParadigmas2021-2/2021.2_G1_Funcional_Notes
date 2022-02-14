@@ -5,7 +5,7 @@ import Notes
 import CreateNote
 
 import Readtxt (readTxt)
-import Deletetxt (deleteTxt)
+import Deletetxt (deleteById)
 
 main :: IO()
 main = do
@@ -16,5 +16,3 @@ main = do
 
     -- readNote
 
-    content <- readTxt "Notes/teste.txt"
-    deleteTxt "Notes/teste.txt"

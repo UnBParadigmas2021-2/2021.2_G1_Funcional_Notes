@@ -1,17 +1,17 @@
 module Cli (parseCommands) where
 
-import Operations as Ops
+import CreateNote
 
 -- Register a command to a string
 dispatch :: [(String, [String] -> IO ())]
 dispatch = [
-    ("create", createNote)
+    ("create", create)
     ]
 
 -- Command calls implementation
-createNote :: [String] -> IO()
-createNote args =
-    Ops.create
+create :: [String] -> IO()
+create args =
+    createNote
 
 -- Documentation text
 helpText =

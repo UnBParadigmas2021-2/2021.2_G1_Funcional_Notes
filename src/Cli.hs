@@ -18,17 +18,22 @@ dispatch = [
     ("delete", delete)
     ]
 
+-- Try to get the id as Int
+runWithId :: [String] -> (Int -> IO()) -> IO()
+runWithId args fun = do
+    let id = readMaybe (head args) :: Maybe Int
+    case id of
+        Just id -> fun id
+        Nothing -> putStrLn "Invalid note id"
+
 -- Command calls implementation
 create :: [String] -> IO()
 create args =
     createNote
 
 showOne :: [String] -> IO()
-showOne args = do
-    let id = readMaybe (head args) :: Maybe Int
-    case id of
-        Just id -> showNote id
-        Nothing -> putStrLn "Invalid note id"
+showOne args =
+    runWithId args showNote
 
 showAll :: [String] -> IO()
 showAll args =
@@ -40,11 +45,8 @@ showTagged args = do
      listNotesByTag tag
 
 delete :: [String] -> IO()
-delete args = do
-    let id = readMaybe (head args) :: Maybe Int
-    case id of
-        Just id -> deleteById id
-        Nothing -> putStrLn "Invalid note id"
+delete args =
+    runWithId args deleteById
 
 -- Documentation text
 helpText =

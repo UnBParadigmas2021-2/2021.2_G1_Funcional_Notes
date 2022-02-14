@@ -1,19 +1,15 @@
 import System.Environment
 import System.IO
 
-import Notes
 import CreateNote
-import Readtxt
-import Deletetxt (deleteTxt)
+import ListNotes
 
 main :: IO()
 main = do
     -- CLI arguments
     args <- getArgs
 
-    -- readNote
+    createNote
+    listNotes
 
-    content <- readNote "Notes/4"
-
-    putStrLn $ show content
-    deleteTxt "Notes/teste.txt"
+    -- deleteTxt "Notes/teste.txt"

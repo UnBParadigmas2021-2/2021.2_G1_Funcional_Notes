@@ -1,15 +1,19 @@
 module Cli (parseCommands) where
 
+import Text.Read
+
 import CreateNote
 import ListNotes
 import ListNotesByTag
+import Deletetxt
 
 -- Register a command to a string
 dispatch :: [(String, [String] -> IO ())]
 dispatch = [
     ("create", create),
     ("show-all", showAll),
-    ("show-tagged", showTagged)
+    ("show-tagged", showTagged),
+    ("delete", delete)
     ]
 
 -- Command calls implementation
@@ -26,12 +30,21 @@ showTagged args = do
      let tag = head args
      listNotesByTag tag
 
+delete :: [String] -> IO()
+delete args = do
+    let id = readMaybe (head args) :: Maybe Int
+    case id of
+        Just id -> deleteById id
+        Nothing -> putStrLn "Invalid note id"
+    --deleteById id
+
 -- Documentation text
 helpText =
     "Usage:\n" ++
     "create\tCreate a note\n" ++
     "show-all\tShow all notes\n" ++
-    "show-tagged tag\t Show all notes with the tag 'tag'\n"
+    "show-tagged tag\t Show all notes with the tag 'tag'\n" ++
+    "delete note-id\t Delete note by its id\n"
 
 -- Get all arguments from cli and parse then
 -- If there is a empty list of arguments this

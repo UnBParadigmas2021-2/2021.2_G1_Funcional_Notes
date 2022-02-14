@@ -7,7 +7,7 @@ import Data.List
 
 import Readtxt
 import Notes
-import Utils (formatTwoDigitNumber)
+import Utils (mapToFilePath, showListComponent)
 
 showResultsCount :: Int -> IO()
 showResultsCount 0 = putStrLn "\n----> Nenhuma nota registrada.\n"
@@ -16,22 +16,13 @@ showResultsCount n = do
     let msg = "\n----> " ++ show n ++ " notas registradas.\n"
     putStrLn msg
 
-mapToFilePath :: Int -> String
-mapToFilePath noteId = "./Notes/" ++ show noteId
-
-showResult :: Bool -> NoteData -> IO()
-showResult showPinned note = do
-    if showPinned
-        then putStrLn("(F) " ++ formatTwoDigitNumber(noteId note) ++ " - " ++ title note)
-        else putStrLn("(-) " ++ formatTwoDigitNumber(noteId note) ++ " - " ++ title note)
-
 showResults :: Bool -> [String] -> IO()
 showResults _ [] = putStrLn ""
 showResults showPinned (h:t) = do
     note <- readNote h
 
     if (pinned note == showPinned)
-        then showResult showPinned note
+        then showListComponent showPinned note
         else putStr ""
 
     showResults showPinned t
@@ -53,4 +44,4 @@ listNotes = do
     showResults True noteFilePathList
     showResults False noteFilePathList
 
-    putStrLn "(F) Nota Fixada\n"
+    putStrLn "(F) Nota Fixada [ Etiqueta ]\n"

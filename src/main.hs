@@ -6,6 +6,7 @@ import ListNotes
 import ListNotesByTag
 
 import Deletetxt (deleteById)
+import Show (showNote)
 
 main :: IO()
 main = do
@@ -13,5 +14,6 @@ main = do
     args <- getArgs
 
     -- createNote
-    listNotes
+    showNote 1
+    -- listNotes
     -- listNotesByTag "work"

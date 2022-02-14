@@ -6,11 +6,13 @@ import CreateNote
 import ListNotes
 import ListNotesByTag
 import Deletetxt
+import Show
 
 -- Register a command to a string
 dispatch :: [(String, [String] -> IO ())]
 dispatch = [
     ("create", create),
+    ("show", showOne),
     ("show-all", showAll),
     ("show-tagged", showTagged),
     ("delete", delete)
@@ -20,6 +22,13 @@ dispatch = [
 create :: [String] -> IO()
 create args =
     createNote
+
+showOne :: [String] -> IO()
+showOne args = do
+    let id = readMaybe (head args) :: Maybe Int
+    case id of
+        Just id -> showNote id
+        Nothing -> putStrLn "Invalid note id"
 
 showAll :: [String] -> IO()
 showAll args =
@@ -36,15 +45,15 @@ delete args = do
     case id of
         Just id -> deleteById id
         Nothing -> putStrLn "Invalid note id"
-    --deleteById id
 
 -- Documentation text
 helpText =
     "Usage:\n" ++
     "create\tCreate a note\n" ++
+    "show note-id\tDetail a note with id 'note-id' and its contents\n" ++
     "show-all\tShow all notes\n" ++
     "show-tagged tag\t Show all notes with the tag 'tag'\n" ++
-    "delete note-id\t Delete note by its id\n"
+    "delete note-id\t Delete note with id 'note-id'\n"
 
 -- Get all arguments from cli and parse then
 -- If there is a empty list of arguments this

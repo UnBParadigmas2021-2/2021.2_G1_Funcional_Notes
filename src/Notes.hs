@@ -8,4 +8,4 @@ data NoteData = NoteData {
     lastUpdateDateISO :: String,
     tag :: String,
     pinned :: Bool
-} deriving (Show, Eq)
+}| Nothing deriving (Show, Eq, Read)

@@ -1,4 +1,6 @@
-module Utils (decodeYesOrNoAnswer, formatTwoDigitNumber, formatDate) where
+module Utils (decodeYesOrNoAnswer, formatTwoDigitNumber, formatDate, mapToFilePath, showListComponent) where
+
+import Notes
 
 decodeYesOrNoAnswer :: String -> Bool
 decodeYesOrNoAnswer "s" = True
@@ -14,3 +16,12 @@ formatDate day month year = do
     let formattedMonth = formatTwoDigitNumber month
 
     show year ++ "-" ++ formattedMonth ++ "-" ++ formattedDay
+
+mapToFilePath :: Int -> String
+mapToFilePath noteId = "./Notes/" ++ show noteId
+
+showListComponent :: Bool -> NoteData -> IO()
+showListComponent showPinned note = do
+    if showPinned
+        then putStrLn("(F) " ++ formatTwoDigitNumber(noteId note) ++ " - " ++ title note ++ " [ " ++  tag note ++ " ]")
+        else putStrLn("(-) " ++ formatTwoDigitNumber(noteId note) ++ " - " ++ title note ++ " [ " ++  tag note ++ " ]")

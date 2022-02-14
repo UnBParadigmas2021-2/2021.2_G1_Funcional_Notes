@@ -1,10 +1,8 @@
 import System.Environment
 import System.IO
 
-import Notes
 import CreateNote
-
-import Readtxt (readTxt)
+import ListNotes
 import Deletetxt (deleteById)
 
 main :: IO()
@@ -13,6 +11,6 @@ main = do
     args <- getArgs
 
     createNote
+    listNotes
 
-    -- readNote
-
+    -- deleteTxt "Notes/teste.txt"

@@ -1,21 +1,30 @@
-module Readtxt (readTxt) where
+module Readtxt (readNote) where
 
 import System.IO
+import Notes
 import System.Directory (doesFileExist)
 
-readTxt :: FilePath -> IO String  
-readTxt path = do
-  content <- readFileIfExist path
-  return content
+-- Return a IO NoteData
+--
+-- If FilePath does not exits this 
+-- function will return Notes.Nothing,
+-- this can be used to see if the file
+-- exists or not
+readNote:: FilePath -> IO NoteData
+readNote path = do
+    fileExists <- doesFileExist path
 
-readFileIfExist :: FilePath -> IO String
-readFileIfExist path = do
-  exist <- doesFileExist path 
-  if exist
-    then readFileThatExist path
-    else return ""
-  
-readFileThatExist :: FilePath -> IO String
-readFileThatExist path = do
-  contents <- readFile' path
-  return contents
+
+    case fileExists of 
+        True -> do 
+            handle <- openFile path ReadMode
+
+            sData <- hGetLine handle
+
+            hClose handle
+
+            let oData = read sData :: NoteData
+
+            return oData
+        False -> 
+            return Notes.Nothing

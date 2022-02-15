@@ -31,15 +31,12 @@ editFileIfExist path id = do
 
 	putStrLn("\n----> Para manter os dados antigos basta não digitar nada")
 	putStrLn("\n----> Título da Nota: " ++ title originalNote)
-	putStr "Novo título>> "
 	noteTitle <- getLine
 
 	putStrLn("\n----> Conteúdo da Nota: " ++ content originalNote)
-	putStr "Novo conteúdo>> "
 	noteContent <- getLine
 
 	putStrLn("\n----> Etiqueta: " ++ tag originalNote)
-	putStr "Nova etiqueta >> "
 	noteTag <- getLine
 
 	case pinned originalNote of
@@ -48,7 +45,6 @@ editFileIfExist path id = do
 		False -> do
 			putStrLn("Pinado: Não")
 
-	putStr "Fixar ou Desfixar >> "
 	isNotePinnedString <- getLine
 
 	let editedNote = NoteData {

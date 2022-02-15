@@ -20,19 +20,15 @@ createNote = do
     putStrLn "\n-------- Criar Nova Nota --------"
     
     putStrLn "\n----> Título da Nota"
-    putStr ">> "
     noteTitle <- getLine
 
     putStrLn "\n----> Conteúdo da Nota"
-    putStr ">> "
     noteContent <- getLine
 
     putStrLn "\n----> Etiqueta\n=> Se não quiser etiquetar a nota, deixe em branco."
-    putStr ">> "
     noteTag <- getLine
 
     putStrLn "\n----> Fixar Nota\n=> Insira s para sim e n para não."
-    putStr ">> "
     isNotePinnedString <- getLine
 
     now <- getCurrentTime

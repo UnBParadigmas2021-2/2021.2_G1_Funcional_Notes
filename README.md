@@ -19,7 +19,21 @@ Este programa é um utilitário escrito em haskell para
 salvar notas rápidas usando a linha de comando.
 
 ## Screenshots
-Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
+
+### Comando Inicial 
+![1-main](https://user-images.githubusercontent.com/88738347/153972395-3daedeba-4fd0-49f7-902c-4150a25bc2d9.png)
+
+### Criar Nota
+![2-create-note](https://user-images.githubusercontent.com/88738347/153972415-c1687813-7ec2-4671-9192-801b1f0b6ebf.png)
+
+### Listar Notas
+![3-list-notes](https://user-images.githubusercontent.com/88738347/153972696-b4237097-1405-4ba5-88e9-31a2296edbae.png)
+
+### Listar Notas Por Etiqueta
+![4-list-notes-by-tag](https://user-images.githubusercontent.com/88738347/153972702-f71a3400-bf59-4d7a-8e93-4620aa4ef9c1.png)
+
+### Excluir Nota
+![5-delete](https://user-images.githubusercontent.com/88738347/153972575-4aebe4e0-0f76-4892-a6c5-7d1e1cb4ce09.png)
 
 ## Instalação 
 **Linguagens**: Haskell<br>

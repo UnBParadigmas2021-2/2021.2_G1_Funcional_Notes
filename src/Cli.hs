@@ -5,6 +5,7 @@ import Text.Read
 import CreateNote
 import ListNotes
 import ListNotesByTag
+import EditNotes
 import Deletetxt
 import Show
 
@@ -15,7 +16,8 @@ dispatch = [
     ("show", showOne),
     ("show-all", showAll),
     ("show-tagged", showTagged),
-    ("delete", delete)
+    ("delete", delete),
+    ("edit", edit)
     ]
 
 -- Try to get the id as Int
@@ -43,6 +45,10 @@ showTagged :: [String] -> IO()
 showTagged args = do
      let tag = head args
      listNotesByTag tag
+
+edit :: [String] -> IO()
+edit args =
+    runWithId args editById
 
 delete :: [String] -> IO()
 delete args =

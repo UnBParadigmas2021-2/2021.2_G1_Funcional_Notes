@@ -4,6 +4,7 @@ import System.IO
 import CreateNote
 import ListNotes
 import ListNotesByTag
+import EditNotes
 
 import Deletetxt (deleteById)
 

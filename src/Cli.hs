@@ -60,8 +60,9 @@ helpText =
     "create\tCreate a note\n" ++
     "show note-id\tDetail a note with id 'note-id' and its contents\n" ++
     "show-all\tShow all notes\n" ++
-    "show-tagged tag\t Show all notes with the tag 'tag'\n" ++
-    "delete note-id\t Delete note with id 'note-id'\n"
+    "show-tagged tag\tShow all notes with the tag 'tag'\n" ++
+    "delete note-id\tDelete note with id 'note-id'\n" ++
+    "edit note-id\tEdit the note with id 'note-id'\n"
 
 -- Get all arguments from cli and parse then
 -- If there is a empty list of arguments this

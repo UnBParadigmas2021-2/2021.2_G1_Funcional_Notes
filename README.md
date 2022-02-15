@@ -72,10 +72,12 @@ em sua instalação. Caso tenha algum problema por favor tente utilizar o docker
 
 
 ## Uso 
-Explique como usar seu projeto, caso haja algum passo a passo após o comando de execução.
+O vídeo que contém a utilização do projeto está presente na seguinte pasta:
+./videos/Utilizacao.mp4
 
 ## Vídeo
-Adicione 1 ou mais vídeos com a execução do projeto.
+O vídeo que contém a apresentação está presente na seguinte pasta:
+./videos/Apresentacao.mp4
 
 ## Fontes
 
